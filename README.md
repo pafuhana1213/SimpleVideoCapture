@@ -111,4 +111,16 @@ bool FGameplayMediaEncoder::Initialize()
 
 なので、```Plugins/SimpleVideoCapture/Source/SimpleVideoCapture/Private/SimpleVideoCaptureSubsystem.cpp```の```#define USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR```を1にすればPIE、NewEditorWindowでも録画可能になります。
 
-ただし動作は不安定です。ご注意ください。
+![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo4.gif)
+
+**ただし動作は不安定です。ご注意ください。**
+
+# 作者
+[おかず@pafuhana1213](https://twitter.com/pafuhana1213)
+
+# ライセンス
+MIT
+
+# 履歴
+- 2020/12/22 v1.0.0
+  - リリース

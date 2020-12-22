@@ -15,7 +15,7 @@
 ## 最も重要 かつ 注意する必要があること
 - デフォルトではこのプラグインを使用するUE4プロジェクトの配置場所に制限がかかります
 - Shipping設定のPackageで正常に動作しません
-- 4K（ 3840x2160 ）以上の映像を録画しようとすると必ずクラッシュします
+- 4K解像度（ 3840x2160 ）以上の映像を録画しようとすると必ずクラッシュします
 
 **ただし、これらの制限に関しても後述の対応で回避可能です。**
 
@@ -70,6 +70,30 @@ FString FullFilename = Filename;
 詳しい理由は割愛しますが、エンジン直下以外だと下図のようにFullFilenameに正常なファイルパスが入らないためです。
 ![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo3.png)
 
-##
+## 4K解像度（ 3840x2160 ）の映像を録画する方法について
+本プラグインでは録画処理にNvVideoEncoderを使用しています。そして、4K解像度の動画を作成する場合はH.264の圧縮レベルを5.2に設定する必要があるのですが、デフォルトでは5.1になっているため不具合が発生します。
+そして、H.264の圧縮レベルを5.2にするためには以下のような対応を入れる必要があります。
+```
+// Engine\Source\Runtime\GameplayMediaEncoder\Private\GameplayMediaEncoder.cpp
+  bool FGameplayMediaEncoder::Initialize()
+  {
+  ...
+  
+  else
+	{
+		UE_LOG(GameplayMediaEncoder, Fatal, TEXT("GameplayMediaEncoder.ResY can only have a value of 720 or 1080"));
+		return false;
+	}
+　
+	// add for changing H.264 compression level to 5.2
+	VideoConfig.Preset = AVEncoder::FVideoEncoderConfig::EPreset::LowLatency;
+
+	// Specifying 0 will completely disable frame skipping (therefore encoding as many frames as possible)
+	FParse::Value(FCommandLine::Get(), TEXT("GameplayMediaEncoder.FPS="), VideoConfig.Framerate);
+  
+  ...
+```
+ちなみに、PixelStreamingでもNvVideoEncoderを使用しているため、同じく4K解像度の映像を使用する際はH.264の圧縮レベルを5.2にする必要があります。  
+詳しくは [Pixel Streaming リファレンス](https://docs.unrealengine.com/ja/SharingAndReleasing/PixelStreaming/PixelStreamingReference/index.html) をご確認ください。
 
 ##

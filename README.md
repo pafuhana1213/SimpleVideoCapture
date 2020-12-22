@@ -57,7 +57,18 @@ WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetIni
 # 制限解除するための方法について
 本プラグインはUE4標準機能をそのまま用いている関係で前述の制限・不具合が存在します。プロジェクト・プラグインからそれらを解決できれば良かったのですが、残念ながらエンジン外からは触る事ができない領域だったため、これから説明するエンジン改造によって解決してください。
 
-## 
+## プロジェクトの配置場所・Shippingでの動作について
+```Engine\Source\Runtime\Windows\WindowsPlatformFeatures\Private\HighlightRecorder.cpp``` の ```FHighlightRecorder::InitialiseMp4Writer``` 関数 における
+```
+FString FullFilename = PlatformFile.ConvertToAbsolutePathForExternalAppForWrite(*(VideoCaptureDir + Filename)); 
+```
+を
+```
+FString FullFilename = Filename;
+```
+に変更すれば解決します。  
+詳しい理由は割愛しますが、エンジン直下以外だと下図のようにFullFilenameに正常なファイルパスが入らないためです。
+![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo3.png)
 
 ##
 

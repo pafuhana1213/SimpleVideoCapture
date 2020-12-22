@@ -9,12 +9,12 @@
 後述の不具合を回避するため、**デフォルトではStandalone、またはPackageでしか録画機能は動作しません。** PIE、New Editor Window でも動作させたい場合は後述の対応を行ってください。
 
 動画ファイルは以下の場所に保存されます。
-- Standlone : <PROJECT_ROOT>/Saved/VideoCaptures
-- Package : C:/Users/<USER_NAME>/AppData/Local/<PROJECT_NAME>/Saved/VideoCaptures
-
-
+- Standlone  : <PROJECT_ROOT>/Saved/VideoCaptures
+- Package    : C:/Users/<USER_NAME>/AppData/Local/<PROJECT_NAME>/Saved/VideoCaptures
 
 # 使い方
+## プロジェクトを指定の位置に配置（後述の対応でスキップ可能）
+
 ## プラグインを有効に
 - プロジェクトのPlugins/SimpleVideoCaptureフォルダにSimpleVideoCaptureプラグイン一式を配置します
 - エディタ上などでSimpleVideoCaptureプラグインを有効にします

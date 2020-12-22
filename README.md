@@ -97,4 +97,18 @@ bool FGameplayMediaEncoder::Initialize()
 詳しくは [Pixel Streaming リファレンス](https://docs.unrealengine.com/ja/SharingAndReleasing/PixelStreaming/PixelStreamingReference/index.html) をご確認ください。
 
 ##　PIE、NewEditorWindowでも動作させる方法について
+上述のH.264の圧縮レベルを5.2にする対応を入れないとクラッシュしやすかったので、プラグイン側で制限をかけていました。
 
+```
+#if !USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR
+	if (GetWorld()->WorldType != EWorldType::Game)
+	{
+		UE_LOG(SimpleVideoCaptureSubsystem, Warning, TEXT("SimpleVideoCaptureSubsystem can be used only in Standalone or Package if USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR is Disabled"));
+		return false;
+	}
+#endif
+```
+
+なので、```Plugins/SimpleVideoCapture/Source/SimpleVideoCapture/Private/SimpleVideoCaptureSubsystem.cpp```の```#define USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR```を1にすればPIE、NewEditorWindowでも録画可能になります。
+
+ただし動作は不安定です。ご注意ください。

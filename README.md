@@ -12,7 +12,7 @@
 - Standlone  : <PROJECT_ROOT>/Saved/VideoCaptures
 - Package    : C:/Users/<USER_NAME>/AppData/Local/<PROJECT_NAME>/Saved/VideoCaptures
 
-## 最も重要で注意する必要があること
+## 最も重要 かつ 注意する必要があること
 - デフォルトではこのプラグインを使用するUE4プロジェクトの配置場所に制限がかかります
 - Shipping設定のPackageで正常に動作しません
 

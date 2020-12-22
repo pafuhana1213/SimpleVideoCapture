@@ -8,6 +8,8 @@
 
 後述の不具合を回避するため、**デフォルトではStandalone、またはPackageでしか録画機能は動作しません。** PIE、New Editor Window でも動作させたい場合は後述の対応を行ってください。
 
+デフォルトではこのプラグインを使用するUE4プロジェクトの配置場所に制限がかかります。また、Shipping設定のPackageで正常に動作しません。ただし、これらの制限に関しても後述の対応で回避可能です。
+
 動画ファイルは以下の場所に保存されます。
 - Standlone  : <PROJECT_ROOT>/Saved/VideoCaptures
 - Package    : C:/Users/<USER_NAME>/AppData/Local/<PROJECT_NAME>/Saved/VideoCaptures

@@ -4,11 +4,7 @@
 	"Category": "",
 	"Description": "",
 	"Modules": [
-		{
-			"Name": "VideoCaptureSample",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		}
+
 	],
 	"Plugins": [
 		{

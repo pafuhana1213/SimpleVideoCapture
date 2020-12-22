@@ -19,7 +19,9 @@ void USimpleVideoCaptureSubsystem::Initialize(FSubsystemCollectionBase& Collecti
 {
 	Super::Initialize(Collection);
 
+#if !USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR
 	if (GetWorld()->WorldType == EWorldType::Game)
+#endif
 	{
 		SetEnableVideoCapture(true);
 	}
@@ -27,10 +29,13 @@ void USimpleVideoCaptureSubsystem::Initialize(FSubsystemCollectionBase& Collecti
 
 void USimpleVideoCaptureSubsystem::Deinitialize()
 {
+#if !USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR
 	if (GetWorld()->WorldType == EWorldType::Game)
+#endif
 	{
 		SetEnableVideoCapture(false);
 	}
+
 }
 
 bool USimpleVideoCaptureSubsystem::StartVideoCapture(FString FileName, EFileSuffixType FileSuffixType, int RecordingLengthSeconds /*= 30*/)

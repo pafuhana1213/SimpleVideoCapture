@@ -96,7 +96,7 @@ bool FGameplayMediaEncoder::Initialize()
 ちなみに、PixelStreamingでもNvVideoEncoderを使用しているため、同じく4K解像度の映像を使用する際はH.264の圧縮レベルを5.2にする必要があります。  
 詳しくは [Pixel Streaming リファレンス](https://docs.unrealengine.com/ja/SharingAndReleasing/PixelStreaming/PixelStreamingReference/index.html) をご確認ください。
 
-##　PIE、NewEditorWindowでも動作させる方法について
+## PIE、NewEditorWindowでも動作させる方法について
 上述のH.264の圧縮レベルを5.2にする対応を入れないとクラッシュしやすかったので、プラグイン側で制限をかけていました。
 
 ```

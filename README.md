@@ -30,9 +30,6 @@
 WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetInitReference())` failed: 0x8007007B - ファイル名、ディレクトリ名、またはボリューム ラベルの構文が間違っています。
 ```
 
-
-
-
 ## プラグインを有効に
 - プロジェクトのPlugins/SimpleVideoCaptureフォルダにSimpleVideoCaptureプラグイン一式を配置します
 - エディタ上などでSimpleVideoCaptureプラグインを有効にします
@@ -45,4 +42,8 @@ WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetIni
 ![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo1.png)
 
 ## 録画終了
+下図のように、SimpleVideoCaptureSubsystem から SaveVideoCapture を使用します。
+なお、ノードにあるTitle / Commentピンは指定しても全く意味がありません（Windows環境の場合は）
+![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo2.png)
 
+その他に関しては、サンプルプロジェクトのレベルBPにてご確認ください。

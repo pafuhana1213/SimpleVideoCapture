@@ -9,8 +9,8 @@
 後述の不具合を回避するため、**デフォルトではStandalone、またはPackageでしか録画機能は動作しません。** PIE、New Editor Window でも動作させたい場合は後述の対応を行ってください。
 
 動画ファイルは以下の場所に保存されます。
-- Standlone  : <PROJECT_ROOT>/Saved/VideoCaptures
-- Package    : C:/Users/<USER_NAME>/AppData/Local/<PROJECT_NAME>/Saved/VideoCaptures
+- Standlone  : ```<PROJECT_ROOT>/Saved/VideoCaptures```
+- Package    : ```C:/Users/<USER_NAME>/AppData/Local/<PROJECT_NAME>/Saved/VideoCaptures```
 
 ## 最も重要 かつ 注意する必要があること
 - デフォルトではこのプラグインを使用するUE4プロジェクトの配置場所に制限がかかります
@@ -21,6 +21,17 @@
 
 # 使い方
 ## プロジェクトを指定の位置に配置（後述の対応でスキップ可能）
+**エンジンと同じ階層に配置する必要があります。**　
+
+例えば、ランチャー版のUE4.25の場合は```C:/Program Files/Epic Games/UE_4.25/ ``` 以下に配置することになります。
+
+もしエンジンと同じ階層以外に配置すると、本プラグインを用いて動画を保存した際に以下のエラーが出力されます。
+```
+WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetInitReference())` failed: 0x8007007B - ファイル名、ディレクトリ名、またはボリューム ラベルの構文が間違っています。
+```
+
+
+
 
 ## プラグインを有効に
 - プロジェクトのPlugins/SimpleVideoCaptureフォルダにSimpleVideoCaptureプラグイン一式を配置します

@@ -43,7 +43,8 @@ WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetIni
 
 ## 録画終了
 下図のように、SimpleVideoCaptureSubsystem から SaveVideoCapture を使用します。
-なお、ノードにあるTitle / Commentピンは指定しても全く意味がありません（Windows環境の場合は）
+なお、ノードにあるTitle / Commentピンは指定しても全く意味がありません。
+（Windows環境の場合での話です。とあるプラットフォームでは何か意味があるかもしれません）
 ![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo2.png)
 
 その他に関しては、サンプルプロジェクトのレベルBPにてご確認ください。

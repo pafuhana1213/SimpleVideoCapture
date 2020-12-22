@@ -39,6 +39,10 @@ WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetIni
 
 ## 録画開始
 下図のように、SimpleVideoCaptureSubsystem から StartVideoCapture を使用します
-FileNameは保存する動画ファイルの名前、FileSuffixTypeは名前の後ろに付加する文字列の形式を指定できます
+- FileName : 保存する動画ファイルの名前
+- FileSuffixType : 名前の後ろに付加する文字列の形式
+- Recording Length Second : 保存する動画ファイルの長さ（録画時間ではありません）
 ![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo1.png)
+
+## 録画終了
 

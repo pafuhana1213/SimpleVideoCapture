@@ -75,11 +75,10 @@ FString FullFilename = Filename;
 そして、H.264の圧縮レベルを5.2にするためには以下のような対応を入れる必要があります。
 ```
 // Engine\Source\Runtime\GameplayMediaEncoder\Private\GameplayMediaEncoder.cpp
-  bool FGameplayMediaEncoder::Initialize()
-  {
-  ...
-  
-  else
+bool FGameplayMediaEncoder::Initialize()
+{
+...
+	else
 	{
 		UE_LOG(GameplayMediaEncoder, Fatal, TEXT("GameplayMediaEncoder.ResY can only have a value of 720 or 1080"));
 		return false;
@@ -91,9 +90,11 @@ FString FullFilename = Filename;
 	// Specifying 0 will completely disable frame skipping (therefore encoding as many frames as possible)
 	FParse::Value(FCommandLine::Get(), TEXT("GameplayMediaEncoder.FPS="), VideoConfig.Framerate);
   
-  ...
+ ...
 ```
+
 ちなみに、PixelStreamingでもNvVideoEncoderを使用しているため、同じく4K解像度の映像を使用する際はH.264の圧縮レベルを5.2にする必要があります。  
 詳しくは [Pixel Streaming リファレンス](https://docs.unrealengine.com/ja/SharingAndReleasing/PixelStreaming/PixelStreamingReference/index.html) をご確認ください。
 
-##
+##　PIE、NewEditorWindowでも動作させる方法について
+

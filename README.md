@@ -48,3 +48,8 @@ WMF: Error: `MFCreateSinkWriterFromURL(Filename, nullptr, nullptr, Writer.GetIni
 ![demo](https://github.com/pafuhana1213/Screenshot/blob/master/SimpleVideoCaptureDemo2.png)
 
 その他に関しては、サンプルプロジェクトのレベルBPにてご確認ください。
+
+# 制限解除するための方法について
+本プラグインはUE4標準機能をそのまま用いている関係で上述の制限・不具合が存在します。プロジェクト・プラグインからそれらを解決できれば良かったのですが、残念ながらエンジン外からは触る事ができない領域だったため、これから説明するエンジン改造によって解決してください。
+
+## 

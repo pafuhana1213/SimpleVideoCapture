@@ -8,7 +8,7 @@
 #include "SimpleVideoCaptureSubsystem.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(SimpleVideoCaptureSubsystem, Log, Log);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FFinishSaveVideoCapture, bool, bSucceeded, const FString&, FilePath );
 
 UENUM(BlueprintType)
 enum class EFileSuffixType : uint8
@@ -24,8 +24,6 @@ class SIMPLEVIDEOCAPTURE_API USimpleVideoCaptureSubsystem : public UGameInstance
 	GENERATED_BODY()
 
 public:
-
-	IVideoRecordingSystem* VideoRecordingSystem;
 
 	USimpleVideoCaptureSubsystem();
 
@@ -50,8 +48,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "SimpleVideoCapture")
 	bool IsVideoCapturing();
 
+	UFUNCTION(BlueprintCallable, Category = "SimpleVideoCapture")
+	TArray<FString> GetVideoFiles();
+
+	void BroadcastFinishSaveVideoCapture(bool bSucceeded, const FString& FilePath );
+
+public:
+
+	UPROPERTY(BlueprintAssignable, Category = "SimpleVideoCapture")
+	FFinishSaveVideoCapture OnFinishSaveVideoCapture;
+
 private:
 
-	//UFUNCTION(BlueprintCallable)
-	//	bool SetResolution(uint32 ResolutionX, uint32 ResolutionY, );
+	IVideoRecordingSystem* VideoRecordingSystem;
 };

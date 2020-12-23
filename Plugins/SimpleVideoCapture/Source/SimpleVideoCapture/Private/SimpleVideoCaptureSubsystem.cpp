@@ -9,6 +9,30 @@ DEFINE_LOG_CATEGORY(SimpleVideoCaptureSubsystem);
 
 #define USE_SIMPLE_VIDEO_CAPTURE_IN_EDITOR 0
 
+
+// copy from 
+// Engine\Source\Editor\AddContentDialog\Private\ContentSourceProviders\FeaturePack\FeaturePackContentSourceProvider.cpp
+class FFillArrayDirectoryVisitor : public IPlatformFile::FDirectoryVisitor
+{
+public:
+	virtual bool Visit(const TCHAR* FilenameOrDirectory, bool bIsDirectory) override
+	{
+		if (bIsDirectory)
+		{
+			Directories.Add(FilenameOrDirectory);
+		}
+		else
+		{
+			Files.Add(FilenameOrDirectory);
+		}
+		return true;
+	}
+
+	TArray<FString> Directories;
+	TArray<FString> Files;
+};
+
+
 USimpleVideoCaptureSubsystem::USimpleVideoCaptureSubsystem()
 	: UGameInstanceSubsystem()
 {
@@ -166,6 +190,7 @@ bool USimpleVideoCaptureSubsystem::SetEnableVideoCapture(bool bEnableVideoCaptur
 		PauseVideoCapture();
 	}
 	VideoRecordingSystem->EnableRecording(bEnableVideoCapture);
+	VideoRecordingSystem->GetOnVideoRecordingFinalizedDelegate().AddUObject(this, &USimpleVideoCaptureSubsystem::BroadcastFinishSaveVideoCapture);
 
 	return true;
 }
@@ -181,3 +206,26 @@ bool USimpleVideoCaptureSubsystem::IsVideoCapturing()
 	return VideoRecordingSystem ? VideoRecordingSystem->GetRecordingState() == EVideoRecordingState::Recording : false;
 }
 
+TArray<FString> USimpleVideoCaptureSubsystem::GetVideoFiles()
+{
+	TArray<FString> Files;
+
+	IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+	FFillArrayDirectoryVisitor DirectoryVisitor;
+	PlatformFile.IterateDirectory(*FPaths::VideoCaptureDir(), DirectoryVisitor);
+
+	for (auto File : DirectoryVisitor.Files)
+	{
+		if (File.EndsWith(TEXT(".mp4")))
+		{
+			Files.Add(File);
+		}
+	}
+
+	return Files;
+}
+
+void USimpleVideoCaptureSubsystem::BroadcastFinishSaveVideoCapture(bool bSucceeded, const FString& FilePath)
+{
+	OnFinishSaveVideoCapture.Broadcast(bSucceeded, FilePath);
+}

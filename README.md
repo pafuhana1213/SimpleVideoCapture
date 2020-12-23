@@ -122,5 +122,9 @@ bool FGameplayMediaEncoder::Initialize()
 MIT
 
 # 履歴
+- 2020/12/14 v1.1.0
+  - 保存動画をプレビューするデモを追加
+  - Subsystemから動画リスト、保存終了タイミングを取れるように実装追加
+  - https://twitter.com/pafuhana1213/status/1341804919355965440
 - 2020/12/22 v1.0.0
   - リリース

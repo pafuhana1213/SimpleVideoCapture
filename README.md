@@ -121,6 +121,9 @@ bool FGameplayMediaEncoder::Initialize()
 # ライセンス
 MIT
 
+# ハッシュタグ
+[#SimpleVideoCapture](https://twitter.com/search?q=%23SimpleVideoCapture&src=typed_query&f=live)
+
 # 履歴
 - 2020/12/14 v1.1.0
   - 保存動画をプレビューするデモを追加
